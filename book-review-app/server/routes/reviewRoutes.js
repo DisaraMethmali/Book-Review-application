@@ -24,15 +24,31 @@ router.post('/', async (req, res) => {
 });
 
 // Update a review
+// Server-side: Review PUT endpoint
 router.put('/:id', async (req, res) => {
-  try {
-    const updatedReview = await Review.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.json(updatedReview);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
+    try {
+      const updatedReview = await Review.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      if (!updatedReview) {
+        return res.status(404).json({ error: "Review not found" });
+      }
+      res.json(updatedReview);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+  
+// Route to fetch a review by its ID
+router.get('/:id', async (req, res) => {
+    try {
+      const review = await Review.findById(req.params.id);
+      if (!review) {
+        return res.status(404).json({ error: "Review not found" });
+      }
+      res.json(review); // Send the review data back as JSON
+    } catch (err) {
+      res.status(500).json({ error: err.message }); // Handle any server errors
+    }
+  });
 // Delete a review
 router.delete('/:id', async (req, res) => {
   try {
