@@ -24,36 +24,96 @@ const ReviewList = ({ reviews, fetchReviews }) => {
   };
 
   return (
-    <Box sx={{ maxWidth: "90%", margin: "0 auto", marginTop: "20px" }}>
-      
+    <Box sx={{ maxWidth: "100%", margin: "0 auto", marginTop: "20px" }}>
       <TableContainer component={Paper} sx={{ boxShadow: 3 }}>
-        <Table sx={{ minWidth: 650 }} aria-label="book reviews table">
+        <Table sx={{ minWidth: 850 }} aria-label="book reviews table">
           <TableHead>
             <TableRow>
-              <TableCell sx={{ fontWeight: "bold", backgroundColor: "#f4f4f4" }}>Title</TableCell>
-              <TableCell sx={{ fontWeight: "bold", backgroundColor: "#f4f4f4" }}>Author</TableCell>
-              <TableCell sx={{ fontWeight: "bold", backgroundColor: "#f4f4f4" }}>Rating</TableCell>
-              <TableCell sx={{ fontWeight: "bold", backgroundColor: "#f4f4f4" }}>Review</TableCell>
-              <TableCell sx={{ fontWeight: "bold", backgroundColor: "#f4f4f4" }}>Date Added</TableCell>
-              <TableCell sx={{ fontWeight: "bold", backgroundColor: "#f4f4f4" }}>Actions</TableCell>
+              <TableCell
+                sx={{
+                  fontWeight: "bold",
+                  backgroundColor: "#f4f4f4",
+                  fontFamily: "Poppins, sans-serif",
+                }}
+              >
+                Title
+              </TableCell>
+              <TableCell
+                sx={{
+                  fontWeight: "bold",
+                  backgroundColor: "#f4f4f4",
+                  fontFamily: "Poppins, sans-serif",
+                }}
+              >
+                Author
+              </TableCell>
+              <TableCell
+                sx={{
+                  fontWeight: "bold",
+                  backgroundColor: "#f4f4f4",
+                  fontFamily: "Poppins, sans-serif",
+                }}
+              >
+                Rating
+              </TableCell>
+              <TableCell
+                sx={{
+                  fontWeight: "bold",
+                  backgroundColor: "#f4f4f4",
+                  fontFamily: "Poppins, sans-serif",
+                }}
+              >
+                Review
+              </TableCell>
+              <TableCell
+                sx={{
+                  fontWeight: "bold",
+                  backgroundColor: "#f4f4f4",
+                  fontFamily: "Poppins, sans-serif",
+                }}
+              >
+                Date Added
+              </TableCell>
+              <TableCell
+                sx={{
+                  fontWeight: "bold",
+                  backgroundColor: "#f4f4f4",
+                  fontFamily: "Poppins, sans-serif",
+                }}
+              >
+                Actions
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {reviews.map((review) => (
-              <TableRow key={review._id} sx={{ "&:nth-of-type(odd)": { backgroundColor: "#f9f9f9" } }}>
-                <TableCell>{review.title}</TableCell>
-                <TableCell>{review.author}</TableCell>
-                <TableCell>{review.rating}</TableCell>
-                <TableCell>{review.reviewText}</TableCell>
-                <TableCell>
+              <TableRow
+                key={review._id}
+                sx={{
+                  "&:nth-of-type(odd)": { backgroundColor: "#f9f9f9" },
+                }}
+              >
+                <TableCell sx={{ fontFamily: "Poppins, sans-serif" }}>
+                  {review.title}
+                </TableCell>
+                <TableCell sx={{ fontFamily: "Poppins, sans-serif" }}>
+                  {review.author}
+                </TableCell>
+                <TableCell sx={{ fontFamily: "Poppins, sans-serif" }}>
+                  {review.rating}
+                </TableCell>
+                <TableCell sx={{ fontFamily: "Poppins, sans-serif" }}>
+                  {review.reviewText}
+                </TableCell>
+                <TableCell sx={{ fontFamily: "Poppins, sans-serif" }}>
                   {new Date(review.dateAdded).toLocaleDateString()}
                 </TableCell>
-                <TableCell>
+                <TableCell sx={{ fontFamily: "Poppins, sans-serif" }}>
                   <Button
                     variant="outlined"
                     color="primary"
                     onClick={() => navigate(`/edit/${review._id}`)}
-                    sx={{ marginRight: "8px", borderRadius: "20px" }}
+                    sx={{ marginRight: "8px", borderRadius: "20px" ,fontWeight: "bold",}}
                   >
                     Edit
                   </Button>
@@ -61,7 +121,7 @@ const ReviewList = ({ reviews, fetchReviews }) => {
                     variant="outlined"
                     color="error"
                     onClick={() => handleDelete(review._id)}
-                    sx={{ borderRadius: "20px" }}
+                    sx={{ borderRadius: "20px",fontWeight: "bold", }}
                   >
                     Delete
                   </Button>

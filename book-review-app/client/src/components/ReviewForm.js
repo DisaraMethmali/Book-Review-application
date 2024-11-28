@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { TextField, Button, Box, Typography } from "@mui/material";
+import { TextField, Button, Box, Typography, MenuItem, Select, InputLabel, FormControl } from "@mui/material";
 import '../App.css';
 
 const ReviewForm = ({ fetchReviews, closeDialog }) => {
@@ -24,7 +24,7 @@ const ReviewForm = ({ fetchReviews, closeDialog }) => {
       component="form"
       onSubmit={handleSubmit}
       sx={{
-        width: "500px", // Increase the width of the form
+        width: "450px", // Increase the width of the form
         padding: "2rem", // Add padding for a spacious look
         backgroundColor: "#f9f9f9", // Lighter background color
         borderRadius: "8px", // Rounded corners
@@ -60,18 +60,25 @@ const ReviewForm = ({ fetchReviews, closeDialog }) => {
           input: { fontFamily: 'Poppins, sans-serif' },
         }}
       />
-      <TextField
-        label="Rating (1-5)"
-        type="number"
-        variant="outlined"
-        fullWidth
-        value={formData.rating}
-        onChange={(e) => setFormData({ ...formData, rating: e.target.value })}
-        required
-        sx={{
-          input: { fontFamily: 'Poppins, sans-serif' },
-        }}
-      />
+
+      <FormControl fullWidth required>
+        <InputLabel>Rating (1-5)</InputLabel>
+        <Select
+          value={formData.rating}
+          onChange={(e) => setFormData({ ...formData, rating: e.target.value })}
+          label="Rating (1-5)"
+          sx={{
+            fontFamily: 'Poppins, sans-serif',
+          }}
+        >
+          {[1, 2, 3, 4, 5].map((value) => (
+            <MenuItem key={value} value={value}>
+              {value}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+
       <TextField
         label="Review Text"
         variant="outlined"
@@ -88,13 +95,13 @@ const ReviewForm = ({ fetchReviews, closeDialog }) => {
       <Button
         variant="contained"
         type="submit"
-        color="success" // Change button color to green
+        color="success" // Green button color
         sx={{
-          padding: "12px 24px", // Increase padding for the button
+          padding: "12px 24px",
           fontFamily: 'Poppins, sans-serif',
-          fontWeight: 600, // Slightly bolder text
-          borderRadius: "5px", // Slightly rounded corners for button
-          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Subtle shadow on button
+          fontWeight: 600,
+          borderRadius: "5px",
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
           '&:hover': {
             backgroundColor: "#45a049", // Darker green on hover
           }
