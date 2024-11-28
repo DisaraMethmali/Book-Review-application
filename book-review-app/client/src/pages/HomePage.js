@@ -132,14 +132,19 @@ const HomePage = () => {
 
       {/* Dialog for adding a new review */}
       <Dialog open={openDialog} onClose={handleCloseDialog}>
-        <DialogTitle>Add a Review</DialogTitle>
+       
         <DialogContent>
           <ReviewForm fetchReviews={fetchReviews} closeDialog={handleCloseDialog} />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseDialog} color="secondary">
-            Cancel
-          </Button>
+        <Button 
+  onClick={handleCloseDialog} 
+  sx={{ color: 'red', borderColor: 'red' }} 
+  variant="outlined"
+>
+  Cancel
+</Button>
+
         </DialogActions>
       </Dialog>
 
