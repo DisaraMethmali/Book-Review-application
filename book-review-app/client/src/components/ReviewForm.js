@@ -34,7 +34,7 @@ const ReviewForm = ({ fetchReviews, closeDialog }) => {
         gap: "1.5rem", // Increase the gap between fields
       }}
     >
-      <Typography variant="h5" sx={{ fontFamily: 'Poppins, sans-serif', marginBottom: "1rem", textAlign: "center" }}>
+      <Typography variant="h5" sx={{ fontFamily: 'Poppins, sans-serif', marginBottom: "1rem",fontWeight:"bold",textAlign: "center" }}>
         Add Your Book Review
       </Typography>
 
@@ -50,16 +50,22 @@ const ReviewForm = ({ fetchReviews, closeDialog }) => {
         }}
       />
       <TextField
-        label="Author"
-        variant="outlined"
-        fullWidth
-        value={formData.author}
-        onChange={(e) => setFormData({ ...formData, author: e.target.value })}
-        required
-        sx={{
-          input: { fontFamily: 'Poppins, sans-serif' },
-        }}
-      />
+  label="Author"
+  variant="outlined"
+  fullWidth
+  value={formData.author}
+  onChange={(e) => {
+    // Prevent numbers from being added to the input
+    const value = e.target.value.replace(/[0-9]/g, ""); // Remove numeric characters
+    setFormData({ ...formData, author: value });
+  }}
+  required
+  sx={{
+    input: { fontFamily: "Poppins, sans-serif" },
+  }}
+  
+/>
+
 
       <FormControl fullWidth required>
         <InputLabel>Rating (1-5)</InputLabel>
@@ -83,7 +89,7 @@ const ReviewForm = ({ fetchReviews, closeDialog }) => {
         label="Review Text"
         variant="outlined"
         multiline
-        rows={4}
+        rows={3}
         fullWidth
         value={formData.reviewText}
         onChange={(e) => setFormData({ ...formData, reviewText: e.target.value })}
