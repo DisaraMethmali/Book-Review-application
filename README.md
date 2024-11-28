@@ -36,7 +36,7 @@ Replace `your-username` with your actual GitHub username.
 After cloning the repository, navigate into the project directory:
 
 ```bash
-cd book-review-app
+cd client
 ```
 
 ### 3. Install Dependencies
