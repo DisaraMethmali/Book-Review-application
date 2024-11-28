@@ -95,6 +95,6 @@ MONGODB_URI=mongodb://localhost:27017/book-reviews
 
 4. **Run the backend** :
    ```bash
-   nodemon App.js
+   nodemon app.js
    ```
 
