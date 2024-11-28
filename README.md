@@ -98,4 +98,5 @@ MONGODB_URI=mongodb://localhost:27017/book-reviews
    nodemon app.js
    ```
 
-![image](https://github.com/user-attachments/assets/9671e4bb-1a6e-4f93-8aef-f9fbacac93c7)
+![image](https://github.com/user-attachments/assets/af7a223b-b7b4-4cc7-99b1-14f853328090)
+
