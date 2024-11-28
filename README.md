@@ -85,7 +85,7 @@ This will start the development server and open the application in your default 
    npm init -y
    npm install express mongoose cors
    ``` 
-3.**Rename `.env` File***:
+3.**Rename `.env` File**:
 
 Replace the MongoDB URL with your actual database connection string.
 
