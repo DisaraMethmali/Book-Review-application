@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { TextField, Button, Box, Typography } from "@mui/material";
 
 const ReviewEdit = () => {
   const { id } = useParams(); // Get the review ID from the URL
@@ -36,7 +37,15 @@ const ReviewEdit = () => {
       console.error("Error updating the review:", error);
     }
   };
-
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+  
+    // Block numbers from being typed in the "Author" field
+    if (name === "author" && /\d/.test(value)) {
+      e.preventDefault(); // Prevent entering numbers
+    }
+  };
+  
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,84 +53,87 @@ const ReviewEdit = () => {
   };
 
   return (
-    <div style={{ maxWidth: "600px", margin: "0 auto" }}>
-      <h2>Edit Review</h2>
+    <Box sx={{ maxWidth: 600, margin: "0 auto", padding: 2 }}>
+      <Typography variant="h5" sx={{ marginBottom: 2 , fontFamily :"Poppins, sans-serif",fontWeight :"bold"}}>
+        Edit Review
+      </Typography>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Book Title</label>
-          <input
-            type="text"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            required
-            style={{ width: "100%", padding: "8px", marginBottom: "10px" }}
-          />
-        </div>
-        <div>
-          <label>Author</label>
-          <input
-            type="text"
-            name="author"
-            value={formData.author}
-            onChange={handleChange}
-            required
-            style={{ width: "100%", padding: "8px", marginBottom: "10px" }}
-          />
-        </div>
-        <div>
-          <label>Rating (1-5)</label>
-          <input
-            type="number"
-            name="rating"
-            min="1"
-            max="5"
-            value={formData.rating}
-            onChange={handleChange}
-            required
-            style={{ width: "100%", padding: "8px", marginBottom: "10px" }}
-          />
-        </div>
-        <div>
-          <label>Review Text</label>
-          <textarea
-            name="reviewText"
-            value={formData.reviewText}
-            onChange={handleChange}
-            required
-            style={{ width: "100%", padding: "8px", marginBottom: "10px" }}
-          />
-        </div>
-        <button
-          type="submit"
-          style={{
-            backgroundColor: "#007BFF",
-            color: "#fff",
-            padding: "10px 20px",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-        >
-          Update Review
-        </button>
-        <button
-          type="button"
-          onClick={() => navigate("/")}
-          style={{
-            backgroundColor: "#6c757d",
-            color: "#fff",
-            padding: "10px 20px",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-            marginLeft: "10px",
-          }}
-        >
-          Cancel
-        </button>
+        <TextField
+          label="Book Title"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+          fullWidth
+          required
+          sx={{ marginBottom: 2 }}
+        />
+   <TextField
+  label="Author"
+  name="author"
+  value={formData.author}
+  onChange={(e) => {
+    const value = e.target.value.replace(/[0-9]/g, ""); // Remove numbers
+    setFormData((prev) => ({ ...prev, author: value })); // Update the state
+  }}
+  fullWidth
+  required
+  sx={{ marginBottom: 2 }}
+  helperText="Numbers are not allowed."
+/>
+
+
+
+        <TextField
+          label="Rating (1-5)"
+          name="rating"
+          value={formData.rating}
+          onChange={handleChange}
+          type="number"
+          inputProps={{ min: 1, max: 5 }}
+          fullWidth
+          required
+          sx={{ marginBottom: 2 }}
+        />
+        <TextField
+          label="Review Text"
+          name="reviewText"
+          value={formData.reviewText}
+          onChange={handleChange}
+          multiline
+          rows={4}
+          fullWidth
+          required
+          sx={{ marginBottom: 2 }}
+        />
+        <Box sx={{ display: "flex", gap: 2 }}>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            sx={{
+              padding: "10px 20px",
+              borderRadius: "4px",
+              cursor: "pointer",
+            }}
+          >
+            Update Review
+          </Button>
+          <Button
+            type="button"
+            onClick={() => navigate("/")}
+            variant="outlined"
+            color="secondary"
+            sx={{
+              padding: "10px 20px",
+              borderRadius: "4px",
+              cursor: "pointer",
+            }}
+          >
+            Cancel
+          </Button>
+        </Box>
       </form>
-    </div>
+    </Box>
   );
 };
 
