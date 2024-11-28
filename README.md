@@ -84,12 +84,8 @@ This will start the development server and open the application in your default 
    ```bash
    npm init -y
    npm install express mongoose cors
-   ```
-
-
-   ```
-4.**Rename `.env` File***
-
+   ``` 
+3.**Rename `.env` File***:
 
 Replace the MongoDB URL with your actual database connection string.
 
@@ -97,7 +93,7 @@ Replace the MongoDB URL with your actual database connection string.
 MONGODB_URI=mongodb://localhost:27017/book-reviews
 ```
 
-3. **Run the backend** :
+4. **Run the backend** :
    ```bash
    nodemon App.js
    ```
